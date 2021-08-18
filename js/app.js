@@ -14,3 +14,31 @@ function generatePin() {
     const pin = getPin();
     document.getElementById("display-pin").value = pin;
 }
+
+// all number and clear them
+document.getElementById("key-pad").addEventListener("click", function (event) {
+    const number = event.target.innerText;
+    const calceInput = document.getElementById("typed-number");
+    if (isNaN(number)) {
+        if (number == "C") {
+            calceInput.value = "";
+        }
+    } else {
+        calceInput.value = calceInput.value + number;
+    }
+});
+
+//  submit button function
+function varifyPin() {
+    const pin = document.getElementById("display-pin").value;
+    const typeNumbers = document.getElementById("typed-number").value;
+    const dispError = document.getElementById("notify-fail");
+    const dispSuccess = document.getElementById("notify-success");
+    if (pin == typeNumbers) {
+        dispSuccess.style.display = "block";
+        dispError.style.display = "none";
+    } else {
+        dispSuccess.style.display = "none";
+        dispError.style.display = "block";
+    }
+}
